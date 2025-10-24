@@ -1,0 +1,115 @@
+/* ==== Giao diện tổng thể ==== */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f6f7f8;
+    margin: 0;
+    color: #222;
+}
+
+/* ==== Khung chính ==== */
+.container {
+    max-width: 800px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 50px 60px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ==== Tiêu đề ==== */
+h2 {
+    text-align: center;
+    color: #ff9800;
+    font-size: 28px;
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+}
+
+/* ==== Form chỉnh sửa ==== */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* ==== Nhóm nhập liệu ==== */
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1.6px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #ff9800;
+    box-shadow: 0 0 6px rgba(255, 152, 0, 0.4);
+    outline: none;
+}
+
+/* ==== Nút hành động ==== */
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn-submit,
+.btn-back {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Nút cập nhật */
+.btn-submit {
+    background: #ff9800;
+    color: #fff;
+}
+.btn-submit:hover {
+    background: #e68a00;
+}
+
+/* Nút quay lại */
+.btn-back {
+    background: #222;
+    color: #fff;
+    text-align: center;
+}
+.btn-back:hover {
+    background: #000;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 600px) {
+    .container {
+        padding: 30px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-submit,
+    .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+}

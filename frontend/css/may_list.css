@@ -1,0 +1,151 @@
+/* ==== Giao diện tổng thể ==== */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f6f7f8;
+    margin: 0;
+    color: #222;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 40px 50px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ==== Header ==== */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: #ff9800;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.top-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+/* ==== Bảng danh sách ==== */
+.machine-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 15px;
+    background: #fff;
+}
+
+.machine-table thead {
+    background: #ff9800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.machine-table th,
+.machine-table td {
+    padding: 12px 14px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.machine-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.machine-table tbody tr:hover {
+    background: #fff5e6;
+    transition: 0.2s;
+}
+
+/* ==== Nút hành động ==== */
+.btn {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: 0.25s;
+}
+
+/* Chi tiết */
+.btn-view {
+    color: #ff9800;
+    border: 1px solid #ff9800;
+    background: #fff;
+}
+.btn-view:hover {
+    background: #ff9800;
+    color: #fff;
+}
+
+/* Sửa */
+.btn-edit {
+    color: #111;
+    border: 1px solid #111;
+    background: #fff;
+}
+.btn-edit:hover {
+    background: #111;
+    color: #fff;
+}
+
+/* Xóa */
+.btn-delete {
+    color: #c62828;
+    border: 1px solid #c62828;
+    background: #fff;
+}
+.btn-delete:hover {
+    background: #c62828;
+    color: #fff;
+}
+
+/* Thêm máy */
+.btn-add {
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.btn-add:hover {
+    background: #e68a00;
+}
+
+/* Đăng xuất */
+.btn-logout {
+    background: #222;
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.btn-logout:hover {
+    background: #000;
+}
+
+/* ==== Khác ==== */
+.actions a {
+    margin: 0 3px;
+}
+
+.no-data {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}

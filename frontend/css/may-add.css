@@ -1,0 +1,179 @@
+/* may-add.css — lớn hơn + chỉnh sửa khung chữ (cam - trắng - đen) */
+
+/* Basic reset + font */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f6f6f6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  color: #222;
+}
+
+/* Main container: to hơn */
+.container {
+  background-color: #fff;
+  width: 880px;               /* tăng rộng */
+  max-width: calc(100% - 80px);
+  padding: 48px;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+/* Header: tiêu đề + nút trên cùng hàng, không bị chia tứ tung */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+/* Title: giữ line-height chuẩn, cho phép xuống dòng mềm nếu nhỏ màn */
+.page-header h1 {
+  color: #ff8c00;            /* cam chủ đạo */
+  font-size: 28px;          /* lớn hơn */
+  font-weight: 700;
+  line-height: 1.15;        /* tránh khoảng thừa gây split lạ */
+  margin-right: 12px;
+  word-break: keep-all;     /* tránh tách từ giữa chữ */
+  white-space: normal;
+  max-width: 68%;           /* chiếm không quá lớn để 2 nút bên phải vừa */
+}
+
+/* Header buttons (quay lại + đăng xuất) */
+.header-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* small rounded btns */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+/* back (light grey) */
+.btn-back {
+  background: #e9e9e9;
+  color: #222;
+  min-width: 110px;
+}
+
+/* logout (black) */
+.btn-logout {
+  background: #111;
+  color: #fff;
+  min-width: 110px;
+}
+
+/* Form area: to, spacing lớn */
+.add-form {
+  display: block;
+  margin-top: 6px;
+}
+
+/* Form group: label + input */
+.form-group {
+  margin-bottom: 22px;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Inputs lớn, bo mềm */
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  font-size: 15px;
+  color: #222;
+  outline: none;
+  transition: box-shadow .18s, border-color .18s;
+}
+
+/* placeholder styling + taller line-height to fix "khung chữ" */
+input::placeholder {
+  color: #bdbdbd;
+  line-height: 1.4;
+}
+input, select { line-height: 1.4; }
+
+/* focus state */
+input:focus, select:focus {
+  border-color: #ff8c00;
+  box-shadow: 0 6px 18px rgba(255,140,0,0.12);
+}
+
+/* Buttons row */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  gap: 16px;
+}
+
+/* Add button (cam) */
+.btn-submit {
+  background-color: #ff8c00;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(255,140,0,0.18);
+  border: none;
+  font-weight: 700;
+  min-width: 170px;
+  text-align: center;
+}
+.btn-submit:hover { background-color: #e67e00; transform: translateY(-2px); }
+
+/* Cancel button (xám) */
+.btn-cancel {
+  background: #f0f0f0;
+  color: #222;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 120px;
+}
+
+/* Fix tiêu đề xuống dòng cụ thể: nếu bạn muốn luôn trên 1 dòng (không khuyến khích trên màn nhỏ),
+   thay phần .page-header h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } */
+
+/* Responsive: trên màn nhỏ tự co lại */
+@media (max-width: 960px) {
+  .container { width: 92%; padding: 32px; }
+  .page-header h1 { font-size: 22px; max-width: 60%; }
+  .btn-back, .btn-logout { min-width: 92px; padding: 9px 12px; }
+  .btn-submit { min-width: 150px; }
+}
+
+@media (max-width: 640px) {
+  body { align-items: flex-start; padding: 20px; }
+  .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .page-header h1 { max-width: 100%; }
+  .header-buttons { width: 100%; justify-content: flex-end; }
+}
