@@ -34,7 +34,7 @@ body {
 
 /* Title: giữ line-height chuẩn, cho phép xuống dòng mềm nếu nhỏ màn */
 .page-header h1 {
-  color: #ff8c00;            /* cam chủ đạo */
+  color: #0e578f;            /* cam chủ đạo */
   font-size: 28px;          /* lớn hơn */
   font-weight: 700;
   line-height: 1.15;        /* tránh khoảng thừa gây split lạ */

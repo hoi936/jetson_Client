@@ -1,34 +1,61 @@
 import socket
 import threading
+import time
 
-HOST = "127.0.0.1"
-PORT = 5000
+SERVER_IP = "127.0.0.1"  # Địa chỉ IP của server Java
+SERVER_PORT = 5000       # Cổng server Java đang lắng nghe
+MA_DINH_DANH = "JETSON004"  # Mã định danh thiết bị
+trang_thai = "STOP"  # Trạng thái mặc định
 
-def handle_client(conn, addr):
-    print(f"🔌 Kết nối từ {addr}")
+def nhan_lenh(sock):
+    global trang_thai
     while True:
         try:
-            data = conn.recv(1024).decode()
-            if not data:
-                break
-            print(f"📩 Nhận từ {addr}: {data}")
-
-            # Server có thể gửi phản hồi bật/tắt cho client ở đây
-            if data == "REQUEST_STATUS":
-                conn.send("DANG_HOAT_DONG".encode())  # ví dụ: server yêu cầu client bật
+            msg = sock.recv(1024).decode()
+            if msg == "START":
+                trang_thai = "START"
+            elif msg == "STOP":
+                trang_thai = "STOP"
         except:
+            print("🚫 Mất kết nối khi nhận lệnh.")
             break
-    conn.close()
-    print(f"❌ Mất kết nối với {addr}")
 
-def start_server():
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((HOST, PORT))
-    server.listen()
-    print(f"🚀 Server đang lắng nghe tại {HOST}:{PORT}")
+def gui_trang_thai(sock):
+    global trang_thai
     while True:
-        conn, addr = server.accept()
-        threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
+        try:
+            msg = f"{MA_DINH_DANH} STATUS: {trang_thai}"
+            sock.send(msg.encode())
+        except:
+            print("🚫 Mất kết nối khi gửi trạng thái.")
+            break
+        time.sleep(3)
+
+def main():
+    global trang_thai
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        sock.connect((SERVER_IP, SERVER_PORT))
+        print(f"✅ Đã kết nối tới server {SERVER_IP}:{SERVER_PORT}")
+    except:
+        print("🚫 Không thể kết nối tới server.")
+        return
+
+    # Gửi mã định danh thiết bị ngay sau khi kết nối
+    try:
+        sock.send(f"MAY_ID: {MA_DINH_DANH}\n".encode())
+    except:
+        print("🚫 Lỗi khi gửi mã định danh.")
+        return
+
+    # Bắt đầu các luồng gửi và nhận
+    threading.Thread(target=nhan_lenh, args=(sock,), daemon=True).start()
+    threading.Thread(target=gui_trang_thai, args=(sock,), daemon=True).start()
+
+    # In trạng thái hiện tại mỗi 2 giây
+    while True:
+        print(f"📡 Trạng thái hiện tại: {trang_thai}")
+        time.sleep(2)
 
 if __name__ == "__main__":
-    start_server()
+    main()
